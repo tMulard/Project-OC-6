@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -13,14 +13,14 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button">Contactez-moi</button>
       </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img class="close" src="assets/icons/close.svg" />
         </header>
 				<form>
 					<div>
@@ -36,17 +36,6 @@
 
       <h1></h1>
     </div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get("id");
-      const name = urlParams.get("name");
-  
-      document.querySelector(".id").innerHTML = id;
-      document.querySelector("h1").innerHTML = name;
-  
-      // refaire un fetch pour afficher + que le nom et l'id XD
-    </script>
+    <script src="/scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>

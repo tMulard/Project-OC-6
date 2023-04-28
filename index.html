@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -14,29 +14,9 @@
     </header>
     <main id="main">
         <div class="photographer_section">
-          choisissez un photographe:
-
           <div class="photographs"></div>
         </div>
     </main>
-    <script src="scripts/factories/photographer.js"></script>
-    <script src="scripts/pages/index.js"></script>
-    <script>
-      const getData = async () => {
-        const respsonse = await fetch("test.json");
-        const data = await respsonse.json();
-  
-        const photographs = document.querySelector(".photographs");
-  
-        data.forEach((photograph) => {
-          const link = document.createElement("a");
-          link.href = `page2.html?id=${photograph.id}&name=${photograph.name}`;
-          link.innerHTML = photograph.name;
-          photographs.appendChild(link);
-        });
-      };
-  
-      getData();
-    </script>
+    <script src="scripts/pages/index.js" type="module"></script>
   </body>
 </html>
