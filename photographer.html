@@ -31,7 +31,22 @@
 				</form>
 			</div>
 		</div>
+    <div>
+      photographe numéro <span class="id"></span>
+
+      <h1></h1>
+    </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get("id");
+      const name = urlParams.get("name");
+  
+      document.querySelector(".id").innerHTML = id;
+      document.querySelector("h1").innerHTML = name;
+  
+      // refaire un fetch pour afficher + que le nom et l'id XD
+    </script>
   </body>
 </html>
