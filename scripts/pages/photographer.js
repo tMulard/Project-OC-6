@@ -15,7 +15,9 @@ const init = async () => {
   const id = getIdFromUrl()
 
   // récupérer les data
+  
   // trouver les medias qui on comme photographerId == id
+
   // tout afficher :p (dans factories)
 
 }
