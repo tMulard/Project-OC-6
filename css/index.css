@@ -31,7 +31,7 @@ h1 {
     margin-top: 100px;
 }
 
-.photographer_section article {
+.photographer_section article a {
     justify-self: center;
     display: flex;
     justify-content: center;
@@ -49,5 +49,5 @@ h1 {
     height: 200px;
     width: 200px;
     border-radius : 50%;
-    
+    object-fit: cover;
 }

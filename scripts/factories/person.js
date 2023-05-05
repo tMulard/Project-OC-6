@@ -1,5 +1,5 @@
 export const photographerFactory = (data) => {
-    const { name, portrait, id } = data;
+    const { name, portrait, id, city, country, tagline, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
@@ -11,9 +11,19 @@ export const photographerFactory = (data) => {
         img.setAttribute("src", picture)
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
+        const h3 = document.createElement('h3');
+        h3.textContent = `${city}, ${country}`;
+        const tag = document.createElement('p');
+        tag.textContent = tagline;
+        const salary = document.createElement('p');
+        salary.textContent = `${price}€/jour`;
 
         link.appendChild(img);
         link.appendChild(h2);
+        link.appendChild(h3);
+        link.appendChild(tag);
+        link.appendChild(salary);
+        
         article.appendChild(link);
         return (article);
     }
