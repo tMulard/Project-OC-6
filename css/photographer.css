@@ -1,3 +1,5 @@
+@import url("index.css");
+
 #contact_modal {
     display: none;
 }
@@ -6,6 +8,31 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.photographer_info article h2 {
+    color: #D3573C;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.photographer_info article h3 {
+    color: #901C1C;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.photographer_info article p {
+    color: black;
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 0;
 }
 
 .contact_button {
@@ -47,6 +74,22 @@
     font-weight: normal;
     text-align: center;
 }
+
+.photographer_picture img {
+    height: 200px;
+    width: 200px;
+    border-radius : 50%;
+    object-fit: cover;
+}
+
+/* 
+I       I   IIIII   III     IIIIIII         III
+II     II   I       I  I       I           I   I
+I I   I I   III     I   I      I          I     I
+I  I I  I   I       I   I      I         IIIIIIIII
+I   I   I   I       I  I       I        I         I
+I       I   IIIII   III     IIIIIII    I           I
+ */
 
 form {
     display: flex;

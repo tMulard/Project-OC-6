@@ -9,17 +9,22 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
     </header>
     <main id="main">
       <div class="photograph-header">
+        <div class="photographer_info">
+        </div>
         <button class="contact_button">Contactez-moi</button>
+        <div class="photographer_picture">
+        </div>
       </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
+          <div class="namePhotographer"></div>
           <img class="close" src="assets/icons/close.svg" />
         </header>
 				<form>
@@ -27,14 +32,26 @@
 						<label>Prénom</label>
 						<input />
 					</div>
+          <div>
+						<label>Nom</label>
+						<input />
+					</div>
+          <div>
+						<label>Email</label>
+						<input />
+					</div>
+          <div>
+						<label>Votre message</label>
+						<input />
+					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <div>
-      photographe numéro <span class="id"></span>
+    <div id="medias">
+      
 
-      <h1></h1>
+      
     </div>
     <script src="/scripts/pages/photographer.js" type="module"></script>
   </body>

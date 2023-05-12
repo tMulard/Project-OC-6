@@ -16,6 +16,7 @@ export const photographerFactory = (data) => {
         const tag = document.createElement('p');
         tag.textContent = tagline;
         const salary = document.createElement('p');
+        salary.classList.add('salary');
         salary.textContent = `${price}€/jour`;
 
         link.appendChild(img);
