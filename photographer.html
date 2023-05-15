@@ -23,9 +23,14 @@
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <div class="namePhotographer"></div>
-          <img class="close" src="assets/icons/close.svg" />
+          <div class="modalHeaderText">
+            <h2>Contactez-moi</h2>
+            <div class="namePhotographer"></div>
+          </div>
+          <div class="modalHeaderImage">
+            <img class="close" src="assets/icons/close.svg" />
+            <h2> </h2>
+          </div>
         </header>
 				<form>
 					<div>
@@ -42,16 +47,21 @@
 					</div>
           <div>
 						<label>Votre message</label>
-						<input />
+						<textarea name="Message" id="messageArea" cols="80" rows="10"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <div id="medias">
-      
+      <label for="filterInput1" id="filterLabel1">Popularité</label>
+      <input type="checkbox" id="filterInput1">
+      <label for="filterInput2" id="filterLabel2">Date</label>
+      <input type="checkbox" id="filterInput2">
+      <label for="filterInput2" id="filterLabel2">Titre</label>
+      <input type="checkbox" id="filterInput2">
 
-      
+
     </div>
     <script src="/scripts/pages/photographer.js" type="module"></script>
   </body>

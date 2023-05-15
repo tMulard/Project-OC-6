@@ -2,6 +2,7 @@
 
 #contact_modal {
     display: none;
+    background-color: white;
 }
 
 .photograph-header {
@@ -52,27 +53,57 @@
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
+    height : 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    position : absolute;
+    top : 5%;
+    left : 25%;
+    right : 25%;
 }
 
 .modal header {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
+    margin-bottom: 70px;
 }
 
 .modal header h2 {
+    margin : 0;
+}
+
+.modalHeaderText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    justify-content: space-between;
+}
+
+.modalHeaderText h2 {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
+}
+
+.modalHeaderImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    justify-content: space-between;
+}
+
+.modalHeaderImage img {
+    cursor: pointer;
+    margin-bottom: 70px;
 }
 
 .photographer_picture img {
@@ -81,15 +112,6 @@
     border-radius : 50%;
     object-fit: cover;
 }
-
-/* 
-I       I   IIIII   III     IIIIIII         III
-II     II   I       I  I       I           I   I
-I I   I I   III     I   I      I          I     I
-I  I I  I   I       I   I      I         IIIIIIIII
-I   I   I   I       I  I       I        I         I
-I       I   IIIII   III     IIIIIII    I           I
- */
 
 form {
     display: flex;
@@ -117,3 +139,19 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+form #messageArea {
+    border-radius: 5px;
+    border : none;
+}
+ 
+
+
+/* 
+    I       I   IIIII   III     IIIIIII         III
+    II     II   I       I  I       I           I   I
+    I I   I I   III     I   I      I          I     I
+    I  I I  I   I       I   I      I         IIIIIIIII
+    I   I   I   I       I  I       I        I         I
+    I       I   IIIII   III     IIIIIII    I           I
+     */

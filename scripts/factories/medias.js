@@ -5,6 +5,8 @@ export const mediaFactory = (data) => {
 
   function getUserInfoDOM() {
     const article = document.createElement( 'article' );
+    const link = document.createElement('a');
+    link.href = `/photographer.html?id=${id}`;
     const h2 = document.createElement( 'h2' );
     h2.textContent = name;
     const h3 = document.createElement('h3');
@@ -25,12 +27,14 @@ export const mediaFactory = (data) => {
     return (img);
   }
   function getUserNameDOM() {
-    const name = document.createElement( 'h2' );
-    name.textContent = name;
+    const nameElement = document.createElement( 'h2' );
+    nameElement.textContent = name;
 
-    return (name);
+    return (nameElement);
   }
-return { name, picture, getUserInfoDOM, getUserPictureDOM, getUserNameDOM }
+  
+
+return { name, picture, getUserInfoDOM, getUserPictureDOM , getUserNameDOM}
 
 }
 
@@ -43,7 +47,7 @@ export const displayHeader = (photographer) => {
   const photographModel = mediaFactory(photographer);
   const userInfoDOM = photographModel.getUserInfoDOM();
   const userPictureDOM = photographModel.getUserPictureDOM();
-  const userNameDOM = photographerModel.getUserNameDOM();
+  const userNameDOM = photographModel.getUserNameDOM();
 
   infoHeaderSection.appendChild(userInfoDOM);
   imgHeaderSection.appendChild(userPictureDOM);
