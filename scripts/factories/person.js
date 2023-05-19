@@ -8,7 +8,7 @@ export const photographerFactory = (data) => {
         const link = document.createElement('a');
         link.href = `/photographer.html?id=${id}`;
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
+        img.setAttribute("src", picture);
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const h3 = document.createElement('h3');

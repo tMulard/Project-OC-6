@@ -2,10 +2,17 @@
 <html>
   <head>
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a1f8d8f6ea.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
@@ -13,56 +20,66 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <div class="photographer_info">
-        </div>
+        <div class="photographer_info"></div>
         <button class="contact_button">Contactez-moi</button>
-        <div class="photographer_picture">
-        </div>
+        <div class="photographer_picture"></div>
       </div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
-				<header>
+      <div class="modal">
+        <header>
           <div class="modalHeaderText">
             <h2>Contactez-moi</h2>
             <div class="namePhotographer"></div>
           </div>
           <div class="modalHeaderImage">
             <img class="close" src="assets/icons/close.svg" />
-            <h2> </h2>
+            <h2></h2>
           </div>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
+        <form>
           <div>
-						<label>Nom</label>
-						<input />
-					</div>
+            <label>Prénom</label>
+            <input />
+          </div>
           <div>
-						<label>Email</label>
-						<input />
-					</div>
+            <label>Nom</label>
+            <input />
+          </div>
           <div>
-						<label>Votre message</label>
-						<textarea name="Message" id="messageArea" cols="80" rows="10"></textarea>
-					</div>
+            <label>Email</label>
+            <input />
+          </div>
+          <div>
+            <label>Votre message</label>
+            <textarea
+              name="Message"
+              id="messageArea"
+              cols="80"
+              rows="10"
+            ></textarea>
+          </div>
           <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <div id="medias">
-      <label for="filterInput1" id="filterLabel1">Popularité</label>
-      <input type="checkbox" id="filterInput1">
-      <label for="filterInput2" id="filterLabel2">Date</label>
-      <input type="checkbox" id="filterInput2">
-      <label for="filterInput2" id="filterLabel2">Titre</label>
-      <input type="checkbox" id="filterInput2">
-
-
+        </form>
+      </div>
     </div>
+    <div id="medias">
+      <div class="filterSection">
+        <p>Trier par</p>
+        <div class="filterContainer">
+          <div class="filterResult">Popularité</div>
+          <i class="fas fa-chevron-up face_down" id="filterArrow"></i>
+          <div class="filters hidden">
+            <div class="filter">Popularité</div>
+            <div class="filter">Date</div>
+            <div class="filter">Titre</div>
+          </div>
+        </div>
+      </div>
+      <div class="media_section">
+      </div>
+    </div>
+
     <script src="/scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>

@@ -155,3 +155,45 @@ form #messageArea {
     I   I   I   I       I  I       I        I         I
     I       I   IIIII   III     IIIIIII    I           I
      */
+
+.filterSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width : 15%;
+    margin-left: 5%;
+}
+.filterContainer {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 50%;
+    background-color: #901C1C;
+    color : white;
+}
+
+.filterResult {
+    cursor: pointer;
+    margin: 10%;
+}
+
+.face_down {
+    transform: rotate(180deg);
+}
+
+.filters {
+    cursor: pointer;
+}
+.filter {
+    border-top: 1px solid white;
+    margin : 10%;
+    padding : 10%;
+    width : 100%;
+}
+
+.hidden {
+    display: none;
+}
