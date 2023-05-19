@@ -13,3 +13,8 @@ export const getIdFromUrl = () => {
   const id = urlParams.get("id");
   return id;
 }
+
+export const folderName = (photographerName) => {
+  const foldername = photographerName.split(" ")[0].replace('-', ' '); // ["Elie-Rose", "Wilkinson"] ==> "Elie-rose" ==> "Elie Rose"
+  return foldername;
+}

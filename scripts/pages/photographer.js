@@ -1,6 +1,6 @@
 import { displayHeader, displayMedias } from "../factories/medias.js";
 import { closeModal, displayModal } from "../utils/contactForm.js";
-import { getData, getIdFromUrl } from "../utils/data.js";
+import { folderName, getData, getIdFromUrl } from "../utils/data.js";
 
 
 const handleFilter = () => {
@@ -45,6 +45,11 @@ const init = async () => {
 
   const photographer = photographers.find((elt) => elt.id === id);
   const medias = allMedia.filter((elt) => elt.photographerId === id);
+  // on rajoute le path du media dans l'objet media
+  medias.forEach(media => {
+    media.path = `assets/images/${folderName(photographer.name)}/`
+  });
+
 
   displayHeader(photographer);
   displayMedias(medias);

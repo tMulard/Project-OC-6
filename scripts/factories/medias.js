@@ -1,5 +1,3 @@
-import { getData } from "../utils/data.js";
-
 export const mediaPhotographerFactory = (data) => {
   const { name, portrait, id, city, country, tagline } = data;
 
@@ -38,53 +36,37 @@ return { name, picture, getUserInfoDOM, getUserPictureDOM , getUserNameDOM}
 
 }
 
-export const mediaFactory = (data) => {
-  const { id, photographerId, title, image, video, likes, date, price} = data;
+export const mediaFactory = (media) => {
 
-  function getPhotographerFirstNameDOM = async (photographerId) => {
+  // vérifier si le média est une image ou une vidéo
+  // afin d'afficher la bonne balise
+  let mediaBalise
+  if ('video' in media) {
+    mediaBalise = document.createElement( 'video' );
+      mediaBalise.setAttribute("src", `${media.path}${media.video}`);
+  } else {
+    mediaBalise = document.createElement( 'img' );
+      mediaBalise.setAttribute("src", `${media.path}${media.image}`);
+  }
     
-    const data = await getData();
-    const photographers = data.photographers;
-    const photographer = photographers.find((elt) => elt.id === photographerId);
-    var namePhotographer = photographer.name;
-    var lastIndex = namePhotographer.lastIndexOf(" ");
-    namePhotographer = namePhotographer.substring(0, lastIndex);
-
-    return (namePhotographer);
-  }
-
-  const imageDisplay = `assets/images/${getPhotographerFirstNameDOM(photographerId)}/${image}`;
-  const videoDisplay = `assets/images/${getPhotographerFirstNameDOM(photographerId)}/${video}`;
-
-  function getMediaDOM() {
     const article = document.createElement( 'article' );
-    const img = document.createElement( 'img' );
-      img.setAttribute("src", imageDisplay);
-    const vid = document.createElement( 'video' );
-      vid.setAttribute("src", videoDisplay);
     const h2 = document.createElement( 'h2' );
-      h2.textContent = title;
+    h2.textContent = media.title;
     const p = document.createElement('p');
-      p.textContent = likes;
+    p.textContent = media.likes;
     const like = document.createElement("i");
-      like.classList.add('fas');
-      like.classList.add('fa-heart')
+    like.classList.add('fas');
+    like.classList.add('fa-heart');
+    
+    article.appendChild(mediaBalise);
+  article.appendChild(h2);
+  article.appendChild(p);
+  article.appendChild(like);
 
-    article.appendChild(img);
-    article.appendChild(vid);
-    article.appendChild(h2);
-    article.appendChild(p);
-    article.appendChild(like);
-
-    return (article);
-  }
-
-
-  return { id, photographerId, title, imageDisplay, videoDisplay, getPhotographerFirstNameDOM, getMediaDOM} //
+  return article
 }
 
 export const displayHeader = (photographer) => {
-  // console.log(photographer);
   const infoHeaderSection = document.querySelector(".photographer_info");
   const imgHeaderSection = document.querySelector(".photographer_picture");
   const nameModal = document.querySelector(".namePhotographer");
@@ -100,12 +82,10 @@ export const displayHeader = (photographer) => {
 }
 
 export const displayMedias = (medias) => {
-  // console.log(medias);
   const mediaSection = document.querySelector(".media_section");
-
+  
   medias.forEach((media) => {
-    const mediaModel = mediaFactory(media);
-    const mediaCardDOM = mediaModel.getMediaDOM();
+    const mediaCardDOM = mediaFactory(media);
     mediaSection.appendChild(mediaCardDOM);
   });
 }
