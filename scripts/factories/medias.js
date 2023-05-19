@@ -39,15 +39,15 @@ return { name, picture, getUserInfoDOM, getUserPictureDOM , getUserNameDOM}
 }
 
 export const mediaFactory = (data) => {
-  const { id, photographerId, title, image, video, likes, date, price } = data;
+  const { id, photographerId, title, image, video, likes, date, price} = data;
 
-  const getPhotographerFirstNameDOM = async (photographerId) => {
+  function getPhotographerFirstNameDOM = async (photographerId) => {
+    
     const data = await getData();
     const photographers = data.photographers;
     const photographer = photographers.find((elt) => elt.id === photographerId);
     var namePhotographer = photographer.name;
     var lastIndex = namePhotographer.lastIndexOf(" ");
-
     namePhotographer = namePhotographer.substring(0, lastIndex);
 
     return (namePhotographer);
@@ -59,24 +59,28 @@ export const mediaFactory = (data) => {
   function getMediaDOM() {
     const article = document.createElement( 'article' );
     const img = document.createElement( 'img' );
-        img.setAttribute("src", imageDisplay);
-    // const vid = document.createElement( 'video' );
-    //     vid.setAttribute("src", videoDisplay);
+      img.setAttribute("src", imageDisplay);
+    const vid = document.createElement( 'video' );
+      vid.setAttribute("src", videoDisplay);
     const h2 = document.createElement( 'h2' );
-        h2.textContent = title;
+      h2.textContent = title;
+    const p = document.createElement('p');
+      p.textContent = likes;
     const like = document.createElement("i");
-      like.classList.add('fas fa-heart');
+      like.classList.add('fas');
+      like.classList.add('fa-heart')
 
     article.appendChild(img);
-    // article.appendChild(vid);
+    article.appendChild(vid);
     article.appendChild(h2);
+    article.appendChild(p);
     article.appendChild(like);
 
     return (article);
   }
 
 
-  return { id, title, getMediaDOM}
+  return { id, photographerId, title, imageDisplay, videoDisplay, getPhotographerFirstNameDOM, getMediaDOM} //
 }
 
 export const displayHeader = (photographer) => {
