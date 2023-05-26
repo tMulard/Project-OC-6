@@ -50,8 +50,12 @@ export const mediaFactory = (media) => {
   }
     
     const article = document.createElement( 'article' );
-    const h2 = document.createElement( 'h2' );
-    h2.textContent = media.title;
+    const textContainer = document.createElement( 'div' );
+    textContainer.classList.add('textContainer');
+    const h3 = document.createElement( 'h3' );
+    h3.textContent = media.title;
+    const likeContainer = document.createElement('div');
+    likeContainer.classList.add('likeContainer');
     const p = document.createElement('p');
     p.textContent = media.likes;
     const like = document.createElement("i");
@@ -59,9 +63,11 @@ export const mediaFactory = (media) => {
     like.classList.add('fa-heart');
     
     article.appendChild(mediaBalise);
-  article.appendChild(h2);
-  article.appendChild(p);
-  article.appendChild(like);
+    textContainer.appendChild(h3);
+    likeContainer.appendChild(p);
+    likeContainer.appendChild(like);
+    textContainer.appendChild(likeContainer);
+    article.appendChild(textContainer);
 
   return article
 }
