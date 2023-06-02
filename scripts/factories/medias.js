@@ -1,5 +1,5 @@
 export const mediaPhotographerFactory = (data) => {
-  const { name, portrait, id, city, country, tagline } = data;
+  const { name, portrait, id, city, country, tagline, price} = data;
 
   const picture = `assets/photographers/${portrait}`;
 
@@ -31,8 +31,14 @@ export const mediaPhotographerFactory = (data) => {
     return (nameElement);
   }
 
+  function getUserPriceDOM() {
+    const salary = document.createElement( 'h2' );
+    salary.textContent = price;
 
-return { name, picture, getUserInfoDOM, getUserPictureDOM , getUserNameDOM}
+    return (salary);
+  }
+
+return { name, picture, getUserInfoDOM, getUserPictureDOM , getUserNameDOM, getUserPriceDOM}
 
 }
 
@@ -89,9 +95,41 @@ export const displayHeader = (photographer) => {
 
 export const displayMedias = (medias) => {
   const mediaSection = document.querySelector(".media_section");
+  mediaSection.innerHTML = ''
   
   medias.forEach((media) => {
     const mediaCardDOM = mediaFactory(media);
     mediaSection.appendChild(mediaCardDOM);
   });
+}
+
+export const displayStats = (photographer, medias) => {
+
+  let totalLikes = 0;
+
+  medias.forEach((media) => {
+    totalLikes += media.likes;
+  });
+
+  const likeContainer = document.createElement('div');
+    likeContainer.classList.add('likeContainer');
+  const total = document.createElement('p');
+    total.textContent = totalLikes;
+  const likeIcon = document.createElement("i");
+    likeIcon.classList.add('fas');
+    likeIcon.classList.add('fa-heart');
+
+  const photographModel = mediaPhotographerFactory(photographer);
+  const photographerSalary = document.createElement('p');
+        photographerSalary.classList.add('salary');
+        photographerSalary.textContent = photographModel.getUserPriceDOM().innerText + `€ / jour`;
+
+  const statSection = document.querySelector(".statistics");
+    statSection.innerHTML = ''
+
+  likeContainer.appendChild(total)
+  likeContainer.appendChild(likeIcon)
+  statSection.appendChild(likeContainer)
+  statSection.appendChild(photographerSalary)
+
 }

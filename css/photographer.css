@@ -158,29 +158,28 @@ form #messageArea {
 #medias {
   width: 85%;
   margin: 0 auto;
+  position : relative;
 }
 
 .filterSection {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 20%;
-}
-.filterContainer {
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
   justify-content: left;
   align-items: center;
-  flex-wrap: wrap;
-  width: 50%;
+  gap: 20px;
+}
+
+.filterContainer {
+  border-radius: 10px;
   background-color: #901c1c;
   color: white;
+  width: 150px;
+  position: relative;
 }
 
 .filterResult {
   cursor: pointer;
-  margin: 10%;
+  padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -193,12 +192,17 @@ form #messageArea {
 
 .filters {
   cursor: pointer;
+  border-radius: 0px 0px 10px 10px;
+  background-color: #901c1c;
+  color: white;
+  width: 150px;
+  position: absolute;
+  top: 50px;
 }
+
 .filter {
   border-top: 1px solid white;
-  margin: 10%;
-  padding: 10%;
-  width: 100%;
+  padding: 20px;
 }
 
 .hidden {
@@ -274,10 +278,33 @@ form #messageArea {
     margin : 0 auto;
 }
 
-@media screen and (max-width : 500px) {
-    .filterSection {width : 40%;}
-    .filterContainer {
-        margin : 10%;
-        width : 60%;
-    }
+.statistics {
+  position : fixed;
+  right : 0%;
+  bottom : 0%;
+  z-index : 99999;
+  background-color: #db8876;
+  border-radius: 5px;
+  color : black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  min-width : 400px;
+  line-height: 31.5px;
 }
+
+.statistics .likeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statistics p {
+  font-size: 24px;
+  margin : 10px;
+}
+/*
+
+*/

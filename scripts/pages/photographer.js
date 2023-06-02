@@ -1,10 +1,10 @@
-import { displayHeader, displayMedias } from "../factories/medias.js";
+import { displayHeader, displayMedias, displayStats } from "../factories/medias.js";
 import { closeModal, displayModal } from "../utils/contactForm.js";
 import { folderName, getData, getIdFromUrl } from "../utils/data.js";
 
 
-const handleFilter = () => {
-  const filterResult = document.querySelector(".filterResult");
+const handleFilter = (medias) => {
+  const filterResult = document.querySelector(".filterResult p");
   const filters = document.querySelector(".filters");
   const allFilter = document.querySelectorAll(".filter");
   const icon = document.querySelector("#filterArrow");
@@ -13,22 +13,44 @@ const handleFilter = () => {
     filters.classList.toggle("hidden"); 
     icon.classList.toggle("face_down");
   });
-
+  
   for(let i = 0; i < allFilter.length; i++)  {
     allFilter[i].addEventListener('click', () => {
       // UI
-      // récupération de la valeure
-      const value = allFilter[i].innerHTML;
-      // refermer les filtres
+      icon.classList.toggle("face_down");
       filters.classList.toggle("hidden");
-      // réécrire dans filterResult
+
+      // récupération de la valeure + réécriture
+      const value = allFilter[i].innerHTML;
       filterResult.innerHTML = value;
 
-      // LOGIQUE D'AFFICHAGE
+      // LOGIQUE D'AFFICHAGE (SORTING)
+      const clickedFilter = allFilter[i].textContent
+      let filteredMedias = []
+
+      switch (clickedFilter) {
+        case 'Popularité':
+          filteredMedias = medias.sort((mediaA, mediaB) => {
+              return mediaB.likes - mediaA.likes
+          })
+          break;
+        case 'Date':
+          filteredMedias = medias.sort((mediaA, mediaB) => {
+            return new Date(mediaA.date) - new Date(mediaB.date)
+          })
+          break;
+        default:
+          filteredMedias = medias.sort((mediaA, mediaB) => {
+            return mediaA.title > mediaB.title
+          })
+          break;
+      }
+
+      displayMedias(filteredMedias)
+
     });
   };
 }
-
 
 const init = async () => {
   // modal
@@ -49,11 +71,15 @@ const init = async () => {
   medias.forEach(media => {
     media.path = `assets/images/${folderName(photographer.name)}/`
   });
-
+  // sort par popularité par default
+  const filteredMedias = medias.sort((mediaA, mediaB) => {
+    return mediaB.likes - mediaA.likes
+  })
 
   displayHeader(photographer);
-  displayMedias(medias);
-  handleFilter();
+  displayMedias(filteredMedias);
+  displayStats(photographer, medias);
+  handleFilter(medias);
 
   // likes
   // select

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -67,7 +68,10 @@
       <div class="filterSection">
         <p>Trier par</p>
         <div class="filterContainer">
-          <div class="filterResult">Popularité <i class="fas fa-chevron-up face_down" id="filterArrow"></i></div>
+          <div class="filterResult">
+            <p>Popularité</p>
+            <i class="fas fa-chevron-up face_down" id="filterArrow"></i>
+          </div>
           <div class="filters hidden">
             <div class="filter">Popularité</div>
             <div class="filter">Date</div>
@@ -75,12 +79,10 @@
           </div>
         </div>
       </div>
-      <div class="media_section">
-      </div>
-      <div class="statistics">
-      </div>
+      <div class="media_section"></div>
+      <div class="statistics"></div>  
     </div>
-
+    
     <script src="/scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>
