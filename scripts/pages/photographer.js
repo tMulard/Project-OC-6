@@ -1,4 +1,4 @@
-import { displayHeader, displayMedias, displayStats } from "../factories/medias.js";
+import { displayHeader, displayMedias, displayStats, handleLikes } from "../factories/medias.js";
 import { closeModal, displayModal } from "../utils/contactForm.js";
 import { folderName, getData, getIdFromUrl } from "../utils/data.js";
 
@@ -80,9 +80,11 @@ const init = async () => {
   displayMedias(filteredMedias);
   displayStats(photographer, medias);
   handleFilter(medias);
+  handleLikes()
 
-  // likes
-  // select
+  // lightbox
+  // accesibilité
+
 }
 
 init();

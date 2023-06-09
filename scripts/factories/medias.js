@@ -43,13 +43,15 @@ return { name, picture, getUserInfoDOM, getUserPictureDOM , getUserNameDOM, getU
 }
 
 export const mediaFactory = (media) => {
-
   // vérifier si le média est une image ou une vidéo
   // afin d'afficher la bonne balise
   let mediaBalise
   if ('video' in media) {
     mediaBalise = document.createElement( 'video' );
-      mediaBalise.setAttribute("src", `${media.path}${media.video}`);
+    mediaBalise.controls = true;
+    const mediaSource = document.createElement( 'source' );
+      mediaSource.setAttribute("src", `${media.path}${media.video}`);
+    mediaBalise.appendChild(mediaSource)
   } else {
     mediaBalise = document.createElement( 'img' );
       mediaBalise.setAttribute("src", `${media.path}${media.image}`);
@@ -60,13 +62,14 @@ export const mediaFactory = (media) => {
     textContainer.classList.add('textContainer');
     const h3 = document.createElement( 'h3' );
     h3.textContent = media.title;
+    
     const likeContainer = document.createElement('div');
     likeContainer.classList.add('likeContainer');
     const p = document.createElement('p');
     p.textContent = media.likes;
     const like = document.createElement("i");
-    like.classList.add('fas');
-    like.classList.add('fa-heart');
+    like.classList.add('fa');
+    like.classList.add('fa-heart-o');
     
     article.appendChild(mediaBalise);
     textContainer.appendChild(h3);
@@ -157,6 +160,7 @@ export const displayStats = (photographer, medias) => {
   const likeContainer = document.createElement('div');
     likeContainer.classList.add('likeContainer');
   const total = document.createElement('p');
+  total.classList.add('totalLikes')
     total.textContent = totalLikes;
   const likeIcon = document.createElement("i");
     likeIcon.classList.add('fas');
@@ -175,4 +179,29 @@ export const displayStats = (photographer, medias) => {
   statSection.appendChild(likeContainer)
   statSection.appendChild(photographerSalary)
 
+}
+
+
+export const handleLikes = () => {
+  const likeContainers = document.querySelectorAll('.likeContainer')
+  const totalLikes = document.querySelector('.totalLikes')
+
+  likeContainers.forEach((container) => {
+    container.addEventListener('click', () => {
+      const p = container.querySelector('p')
+      const heart = container.querySelector('.fa')
+
+      if (heart.classList.contains('fa-heart-o')) {
+        totalLikes.innerHTML = parseInt(totalLikes.innerHTML) + 1
+        p.innerHTML = parseInt(p.innerHTML) + 1
+        heart.classList.remove('fa-heart-o')
+        heart.classList.add('fa-heart')
+      } else {
+        totalLikes.innerHTML = parseInt(totalLikes.innerHTML) - 1
+        p.innerHTML = parseInt(p.innerHTML) - 1
+        heart.classList.remove('fa-heart')
+        heart.classList.add('fa-heart-o')
+      }
+    })
+  })
 }
