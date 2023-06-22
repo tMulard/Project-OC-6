@@ -219,25 +219,25 @@ form #messageArea {
   margin-top: 100px;
 }
 
-.media_section article {
+.media_section a {
   width: 30%;
   min-width: 350px;
   transition: 0.3s;
 
 }
-.media_section article:hover {
+.media_section a:hover {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.media_section article .textContainer {
+.media_section a .textContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.media_section article .likeContainer {
+.media_section a .likeContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -245,24 +245,24 @@ form #messageArea {
     width : 15%;
 }
 
-.media_section article h3 {
+.media_section a h3 {
     color: #901C1C;
     font-size: 18px;
     width : 85%;
 }
 
-.media_section article p {
+.media_section a p {
     color: #901C1C;
     font-size: 18px;
 }
 
-.media_section article i {
+.media_section a i {
     color: #901C1C;
     font-size: 18px;
     text-align: right;
 }
 
-.media_section article img {
+.media_section a img {
     height: 300px;
     width: 100%;
     border-radius: 10px;
@@ -270,7 +270,7 @@ form #messageArea {
     margin : 0 auto;
 }
 
-.media_section article video {
+.media_section a video {
     height: 300px;
     width: 100%;
     border-radius: 10px;
@@ -319,9 +319,9 @@ form #messageArea {
 }
 
 .lightBox {
-  position : fixed;
+  /* position : fixed;
   top : 0;
-  left : 0;
+  left : 0; */
   width : 100%;
   height : 100%;
   background-color : rgba(0, 0, 0, .1);

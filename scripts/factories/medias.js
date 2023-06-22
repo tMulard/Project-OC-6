@@ -52,20 +52,23 @@ export const mediaFactory = (media) => {
   // vérifier si le média est une image ou une vidéo
   // afin d'afficher la bonne balise
   let mediaBalise;
+  const link = document.createElement("a");
+
   if ("video" in media) {
     mediaBalise = document.createElement("video");
     mediaBalise.controls = true;
+    link.href = `${media.path}${media.video}`
     const mediaSource = document.createElement("source");
     mediaSource.setAttribute("src", `${media.path}${media.video}`);
     mediaBalise.appendChild(mediaSource);
     mediaBalise.setAttribute("alt", `${media.title}`);
   } else {
     mediaBalise = document.createElement("img");
+    link.href = `${media.path}${media.image}`
     mediaBalise.setAttribute("src", `${media.path}${media.image}`);
     mediaBalise.setAttribute("alt", `${media.title}`);
   }
 
-  const article = document.createElement("article");
   const textContainer = document.createElement("div");
   textContainer.classList.add("textContainer");
   const h3 = document.createElement("h3");
@@ -79,14 +82,14 @@ export const mediaFactory = (media) => {
   like.classList.add("fa");
   like.classList.add("fa-heart-o");
 
-  article.appendChild(mediaBalise);
+  link.appendChild(mediaBalise);
   textContainer.appendChild(h3);
   likeContainer.appendChild(p);
   likeContainer.appendChild(like);
   textContainer.appendChild(likeContainer);
-  article.appendChild(textContainer);
+  link.appendChild(textContainer);
 
-  return article;
+  return link;
 };
 
 export const displayHeader = (photographer) => {
@@ -112,126 +115,6 @@ export const displayMedias = (medias) => {
     const mediaCardDOM = mediaFactory(media);
     mediaSection.appendChild(mediaCardDOM);
   });
-};
-
-export const displayLightBox = (photographer, media) => {
-  class LightBox {
-    static init() {
-      const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'))
-      const gallery = links.map(link => link.getAttribute('href'))  
-      links.forEach((link) =>
-          link.addEventListener("click", (e) => {
-            e.preventDefault();
-            new LightBox(e.currentTarget.getAttribute("href"), gallery);
-          })
-        );
-    }
-    
-        constructor (url, images) {
-          this.element = this.buildDOM(url)
-          this.images = images
-          this.loadImage(url)
-          document.body.appendChild(this.element)
-          disableScroll(this.element)
-          document.addEventListener('keyup', this.onKeyUp)
-        }
-    
-    loadImage(url) {
-      this.url = null
-      const img = new Image();
-      const container = this.element.querySelector('lightBoxImage')
-      const loader = document.createElement('div')
-      loader.classList.add('lightBoxLoader')
-      container.appendChild(loader);
-      
-      img.onload = function () {
-        container.removeChild(loader)
-        container.appendChild(image)
-        this.url = url
-      }
-      img.src = url
-    }
-
-    onKeyUp (e) {
-      if (e.key === 'Escape') {this.close(e)} 
-      if (e.key === 'ArrowLeft') {this.prev(e)}
-      if (e.key === 'ArrowRight') {this.next(e)}
-    }
-
-    close (e) {
-      e.preventDefault()
-      this.element.classList.add('fade')
-      enableBodyScroll(this.element)
-      window.setTimeout(() => {
-        this.element.parentElement.removeChild(this.element)
-      }, 500)
-    }
-
-    next (e) {
-      e.preventDefault()
-      let i = this.images.findIndex(image => image === this.url)
-      this.loadImage(this.images[i + 1])
-    }
-    
-    prev (e) {
-      e.preventDefault()
-      let i = this.images.findIndex(image => image === this.url)
-      if (i === 0) {i = this.images.length}
-      this.loadImage(this.images[i - 1])
-    }
-
-    buildDOM (url) {
-      const container = document.createElement('div')
-      container.classList.add('lightBox')
-
-      const btnClose = document.createElement('button')
-      btnClose.classList.add('lightBoxClose')
-
-      const btnNext = document.createElement('button')
-      btnNext.classList.add('lightBoxNext')
-
-      const btnPrev = document.createElement('button')
-      btnPrev.classList.add('lightBoxPrev')
-      
-      const imageContainer = document.createElement('div')
-      imageContainer.classList.add('lightBoxImage')
-
-
-      let mediaBalise;
-      if ("video" in media) {
-        mediaBalise = document.createElement("video");
-        mediaBalise.controls = true;
-        const mediaSource = document.createElement("source");
-        mediaSource.setAttribute("src", `${media.path}${media.video}`);
-        mediaBalise.appendChild(mediaSource);
-        mediaBalise.setAttribute("alt", `${media.title}`);
-      } else {
-        mediaBalise = document.createElement("img");
-        mediaBalise.setAttribute("src", `${media.path}${media.image}`);
-        mediaBalise.setAttribute("alt", `${media.title}`);
-      }
-      
-      const title = document.createElement('h2')
-      title.classList.add('lightBoxMediaTitle')
-      title.innerText = media.title
-
-
-      container.appendChild(btnClose);
-      container.appendChild(btnNext);
-      container.appendChild(btnPrev);
-      imageContainer.appendChild(img);
-      container.appendChild(imageContainer);
-      container.appendChild(title);
-
-      container.querySelector('lightBoxClose').addEventListener('click', this.close.bind(this))
-      container.querySelector('lightBoxNext').addEventListener('click', this.next.bind(this))
-      container.querySelector('lightBoxPrev').addEventListener('click', this.prev.bind(this))
-
-
-      return container
-    }
-
-  }
 };
 
 export const displayStats = (photographer, medias) => {

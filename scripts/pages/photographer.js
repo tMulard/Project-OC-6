@@ -1,6 +1,7 @@
-import { displayHeader, displayLightBox, displayMedias, displayStats, handleLikes } from "../factories/medias.js";
+import { displayHeader, displayMedias, displayStats, handleLikes } from "../factories/medias.js";
 import { closeModal, displayModal } from "../utils/contactForm.js";
 import { folderName, getData, getIdFromUrl } from "../utils/data.js";
+import { LightBox } from "../factories/lightbox.js";
 
 
 const handleFilter = (medias) => {
@@ -81,11 +82,7 @@ const init = async () => {
   displayStats(photographer, medias);
   handleFilter(medias);
   handleLikes()
-
-  // lightbox
-  displayLightBox(photographer, medias);
-  // accesibilité
-
+  LightBox.init()
 }
 
 init();
