@@ -21,46 +21,46 @@
 // };
 
 // export const fetchTitleFromMedia = (medias) => {
-//   let obj = null;
-//   const links = Array.from(
-//     document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
-//   );
-//   links.forEach((link) =>
-//     link.addEventListener("click", (e) => {
-  
-  //       medias.forEach((media) => {
-    //         if (media.path === url) {
+  //   let obj = null;
+  //   const links = Array.from(
+    //     document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
+    //   );
+    //   links.forEach((link) =>
+    //     link.addEventListener("click", (e) => {
+      
+      //       medias.forEach((media) => {
+        //         if (media.path === url) {
       //           obj = media.title;
       //         }
       //       });
       //     })
       //   );
       //   return obj;
-// };
-
+      // };
+      
 export class LightBox {
   static init() {
     const links = Array.from(
       document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
-      );
-      const medias = Array.from(
-        document.querySelectorAll('article')
-      );
-      const gallery = links.map((link) => link.getAttribute("href"));
-      
-      links.forEach((link) =>
+    );
+    const medias = Array.from(
+      document.querySelectorAll('link')
+    );
+    const gallery = links.map((link) => link.getAttribute("href"));
+              
+    links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
-        const url = e.currentTarget.getAttribute("href");
-        const mediaTitle = e.currentTarget.getAttribute("alt")
-        let mediaType;
-        medias.forEach((media) => {
-            if (media.getElementsByTagName("video")){
-              mediaType = media.video;
-            }
-            else if (media.getElementsByTagName("image")){
-              mediaType = media.image;
-            }
+          const url = e.currentTarget.getAttribute("href");
+                const mediaTitle = e.currentTarget.getAttribute("alt")
+                let mediaType;
+                medias.forEach((media) => {
+                  if (media.getElementsByTagName().match("video")){
+                    mediaType = media.video;
+                  }
+                  else if (media.getElementsByTagName().match("img")){
+                    mediaType = media.image;
+                  }
         });
         new LightBox(e.currentTarget.getAttribute("href"), gallery, url, mediaTitle, mediaType);
       })
@@ -71,12 +71,12 @@ export class LightBox {
     this.gallery = gallery;
     this.url = url;
     this.element = buildDOM(url);
-    this.loadMedia(url);
+    this.element.addEventListener("click", this.loadMedia(url));
     document.body.appendChild(this.element);
     disableScroll(this.element);
     document.addEventListener("keyup", this.onKeyUp);
   }
-
+  ///// CHARGEMENT DE L'IMAGE/LA VIDEO
   loadMedia(url) {
     this.url = null;
     const container = this.element.querySelector("lightBoxImage");
@@ -95,17 +95,17 @@ export class LightBox {
     }
     else if (url.search(".mp4")) { 
       const vid = new Video();
-      img.onload = function () {
+      vid.onload = function () {
         container.removeChild(loader);
         container.appendChild(vid);
         this.url = url;
         vid.src = url;
       };
     }
-
+    
     
   }
-
+  //////DEPLACEMENT VIA LE CLAVIER
   onKeyUp(e) {
     if (e.key === "Escape") {
       this.close(e);
@@ -117,7 +117,7 @@ export class LightBox {
       this.next(e);
     }
   }
-
+  ///////FERMER LA LIGHTBOX
   close(e) {
     e.preventDefault();
     this.element.classList.add("fade");
@@ -126,13 +126,13 @@ export class LightBox {
       this.element.parentElement.removeChild(this.element);
     }, 500);
   }
-
+  /////NAVIGATION DANS LA GALLERIE
   next(e) {
     e.preventDefault();
     let i = this.gallery.findIndex((image) => image === this.url);
     this.loadMedia(this.gallery[i + 1]);
   }
-
+  
   prev(e) {
     e.preventDefault();
     let i = this.gallery.findIndex((image) => image === this.url);
@@ -141,24 +141,25 @@ export class LightBox {
     }
     this.loadMedia(this.gallery[i - 1]);
   }
-
+  
+  ////CREATION DE LA LIGHTBOX EN FONCTION DU MEDIA SELECTIONNE
   buildDOM(url) {
-
+    
     const container = document.createElement("div");
     container.classList.add("lightBox");
-
+    
     const btnClose = document.createElement("button");
     btnClose.classList.add("lightBoxClose");
-
+    
     const btnNext = document.createElement("button");
     btnNext.classList.add("lightBoxNext");
-
+    
     const btnPrev = document.createElement("button");
     btnPrev.classList.add("lightBoxPrev");
-
+    
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("lightBoxImage");
-
+    
     
     let mediaBalise = null;
     
@@ -175,7 +176,7 @@ export class LightBox {
       mediaBalise.setAttribute("src", `${url}`);
       mediaBalise.setAttribute("alt", `${mediaTitle}${mediaType}`);
     }
-
+    
     const title = document.createElement("h2");
     title.classList.add("lightBoxMediaTitle");
     title.innerText = mediaTitle;
@@ -186,16 +187,16 @@ export class LightBox {
     imageContainer.appendChild(mediaBalise);
     container.appendChild(imageContainer);
     container.appendChild(title);
-
+    
     container
-      .querySelector("lightBoxClose")
-      .addEventListener("click", this.close.bind(this));
+    .querySelector("lightBoxClose")
+    .addEventListener("click", this.close.bind(this));
     container
-      .querySelector("lightBoxNext")
-      .addEventListener("click", this.next.bind(this));
+    .querySelector("lightBoxNext")
+    .addEventListener("click", this.next.bind(this));
     container
-      .querySelector("lightBoxPrev")
-      .addEventListener("click", this.prev.bind(this));
+    .querySelector("lightBoxPrev")
+    .addEventListener("click", this.prev.bind(this));
 
     return container;
   }
