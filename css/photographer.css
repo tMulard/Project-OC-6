@@ -318,50 +318,55 @@ form #messageArea {
   border-radius: 4px;
 }
 
+/* TODO !! */
 .lightBox {
-  /* position : fixed;
+  position : fixed; /* il va t'embêter */
   top : 0;
-  left : 0; */
-  width : 100%;
+  left : 0;
+  width : 0%;
   height : 100%;
   background-color : rgba(0, 0, 0, .1);
-  z-index : 10;
+  z-index : 11;
   overflow : auto;
   animation : lightBoxIn .5s;
   transition: opacity .3s;
 }
 
-.lightBox .fade {opacity : 0;}
+.lightBox .fade {
+  opacity : 0;
+  z-index: 0;
+}
 
 .lightBoxNext,
   .lightBoxPrev {
-    background : url(assets/icons/Vector.svg) center center / 100% 100%;
+    background : url("../assets/icons/Vector.svg") center center / 100% 100%;
     width : 30px;
     height : 48px;
     position : fixed;
     top : 50%;
     margin-top : -24px;
     z-index : 11;
+    right : 0;
   }
-  
+
   .lightBoxPrev {
-    right : auto;
+    right : 100%;
     left : 0;
-    transform : rotation(180deg);
+    transform : rotate(180deg);
   }
   
   .lightBoxClose {
     width : 42;
     height : 42;  
-    background : url(assets/icons/close.svg) center center / 100% 100% no-repeat transparent;
-    border : none;
+    margin-top : 21px;
+    background : url("../assets/icons/close.svg") center center / 100% 100%;
     position : fixed;
     top : 20px;
     right : 20px;
-    z-index : 12;
+    z-index : 11;
   }
   .lightBox button {  
-    opacity : .5;
+    opacity : 0.5;
     cursor : pointer;
     transition : opacity .3s;
     text-indent : -3000px;
@@ -374,23 +379,45 @@ form #messageArea {
 .lightBoxLoader {
   width: 40px;
   height: 40px;
-  background : url(assets/icons/my-loader.svg) center center no-repeat;
-  opacity: .5;
+  background : url("../assets/icons/my-loader.svg") center center / 100% 100%;
+  position : absolute;
+  top : 20px;
+  left : 20px;
+  bottom : 20px;
+  right : 20px;
+  z-index : 11;
 }
 
 .lightBoxImage {
   display : flex;
   align-items : center;
   justify-content : center;  
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 50%;
+  margin-right: 50%;
   min-height : 100vh;
+  position : relative;
+  z-index : 10;
   animation : lightBoxIn .5s;
 }
 
 .lightBoxImage img {
   max-width : 100%;
   height : auto;
+  position : absolute;
+  top : 20px;
+  left : 20px;
+  bottom : 20px;
+  right : 20px;
+}
+
+.lightBoxImage video {
+  max-width : 100%;
+  height : auto;
+  position : absolute;
+  top : 20px;
+  left : 20px;
+  bottom : 20px;
+  right : 20px;
 }
 
 @keyframes lightBoxIn {
