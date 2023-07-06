@@ -1,5 +1,10 @@
 @import url("index.css");
 
+body {
+  position : relative;
+  z-index : 0;
+}
+
 #contact_modal {
   display: none;
   background-color: white;
@@ -245,7 +250,7 @@ form #messageArea {
     width : 15%;
 }
 
-.media_section a h3 {
+.media_section a .textContainer h3 {
     color: #901C1C;
     font-size: 18px;
     width : 85%;
@@ -282,7 +287,7 @@ form #messageArea {
   position : fixed;
   right : 0%;
   bottom : 0%;
-  z-index : 99999;
+  z-index : 9;
   background-color: #db8876;
   border-radius: 5px;
   color : black;
@@ -317,10 +322,10 @@ form #messageArea {
   background: #9ca2b0;
   border-radius: 4px;
 }
-
+/*//////////////////////////////////////////////////////////////////////////*/
 /* TODO !! */
 .lightBox {
-  position : fixed; /* il va t'embêter */
+  position : fixed;
   top : 0;
   left : 0;
   width : 0%;
@@ -337,8 +342,8 @@ form #messageArea {
   z-index: 0;
 }
 
-.lightBoxNext,
-  .lightBoxPrev {
+.lightBox .lightBoxNext,
+.lightBox .lightBoxPrev {
     background : url("../assets/icons/Vector.svg") center center / 100% 100%;
     width : 30px;
     height : 48px;
@@ -349,16 +354,16 @@ form #messageArea {
     right : 0;
   }
 
-  .lightBoxPrev {
+  .lightBox .lightBoxPrev {
     right : 100%;
     left : 0;
     transform : rotate(180deg);
   }
   
-  .lightBoxClose {
-    width : 42;
-    height : 42;  
-    margin-top : 21px;
+  .lightBox .lightBoxClose {
+    width : 42px;
+    height : 42px;  
+    margin-top : -21px;
     background : url("../assets/icons/close.svg") center center / 100% 100%;
     position : fixed;
     top : 20px;
@@ -370,13 +375,14 @@ form #messageArea {
     cursor : pointer;
     transition : opacity .3s;
     text-indent : -3000px;
+    border : none;
   }
 
 .lightBox button:hover {
   opacity : 1;
 }
 
-.lightBoxLoader {
+/* .lightBox .lightBoxLoader {
   width: 40px;
   height: 40px;
   background : url("../assets/icons/my-loader.svg") center center / 100% 100%;
@@ -386,9 +392,9 @@ form #messageArea {
   bottom : 20px;
   right : 20px;
   z-index : 11;
-}
+} */
 
-.lightBoxImage {
+.lightBox .lightBoxImage {
   display : flex;
   align-items : center;
   justify-content : center;  
@@ -398,11 +404,24 @@ form #messageArea {
   position : relative;
   z-index : 10;
   animation : lightBoxIn .5s;
+  overflow: hidden;
+  max-height : 100%;
+  width : auto;
 }
 
-.lightBoxImage img {
+.lightBox .lightBoxImage img {
+  position : absolute;
+  top : 20px;
+  left : 20px;
+  bottom : 20px;
+  right : 20px;
+
+}
+
+.lightBox .lightBoxImage video {
   max-width : 100%;
-  height : auto;
+  min-height : 100px;
+  width: auto;
   position : absolute;
   top : 20px;
   left : 20px;
@@ -410,15 +429,15 @@ form #messageArea {
   right : 20px;
 }
 
-.lightBoxImage video {
-  max-width : 100%;
-  height : auto;
+.lightBox .lightBoxMediaTitle {
+  color: #901C1C;
+  font-size: 18px;
+  width : 85%;
   position : absolute;
-  top : 20px;
-  left : 20px;
-  bottom : 20px;
-  right : 20px;
-}
+  left : 45%;
+  bottom : 20%;
+  z-index : 11;
+} 
 
 @keyframes lightBoxIn {
   from {opacity : 0;}

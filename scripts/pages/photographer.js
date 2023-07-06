@@ -82,7 +82,7 @@ const init = async () => {
   displayStats(photographer, medias);
   handleFilter(medias);
   handleLikes()
-  LightBox.init()
+  LightBox.init(medias)
 }
 
 init();
