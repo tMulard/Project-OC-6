@@ -1,3 +1,5 @@
+import {enableBodyScroll, disableBodyScroll} from './body-scroll-lock.js'
+
 export class LightBox {
   static init(medias) {
     const links = Array.from(
@@ -21,59 +23,58 @@ export class LightBox {
             mediaSrc = `${media.path}${media.video}`;
           }
         })
-        
-        new LightBox(gallery, url, mediaTitle, mediaSrc);
+        e.preventDefault()
+        new LightBox(url, gallery, mediaTitle, mediaSrc);
       })
-    );
-  }
-  
-  constructor(gallery, url, mediaTitle, mediaSrc) {
-    this.gallery = gallery;
-    this.url = url;
-    this.mediaTitle = mediaTitle;
-    this.mediaSrc = mediaSrc;
-    console.log(this.mediaTitle)
-    this.element = this.buildDOM(this.url, this.mediaTitle, this.mediaSrc);
-    document.body.appendChild(this.element);
-    console.log(this.element);
-    this.element.onload = this.loadMedia(this.url, this.mediaTitle, this.mediaSrc);
+      );
+    }
+    
+    constructor(url, gallery, mediaTitle, mediaSrc) {
+      this.gallery = gallery;
+      this.url = url;
+      this.element = this.buildDOM(this.url, mediaTitle);
+      this.loadMedia(url, mediaTitle, mediaSrc);
+      document.body.appendChild(this.element);
+      disableBodyScroll(this.element)
+      //debugger
+    //console.log(this.element);
     document.addEventListener("keyup", this.onKeyUp);
   }
   ///// CHARGEMENT DE L'IMAGE/LA VIDEO
   loadMedia(url, mediaTitle, mediaSrc) {
+    this.url = url;
     const title = mediaTitle;
     const src = mediaSrc;
     // this.url = null;
-    const container = this.element.querySelector(".lightBoxImage");
+    const container = this.element.querySelector(".lightBox .lightBoxImage");
+    console.log(container);
     //const loader = document.createElement("div");
     //loader.classList.add("lightBoxLoader");
     //container.appendChild(loader);
     if (url.search(".jpg")) { 
       const img = document.createElement("img");
-      img.onload = loadImg(src);
-      function loadImg(src) {
+      // img.onload = loadImg(src);
+      // function loadImg(src) {
         //container.removeChild(loader);
-        // this.url = url;
         img.setAttribute("src", `${src}`);
         img.setAttribute("alt", `${title}`);
         container.appendChild(img);
         return container
-      };
+      // };
     }
     else if (url.search(".mp4")) { 
       const vid = document.createElement("video");
       vid.controls = true;
       const vidSource = document.createElement("source");
-      vid.onload = loadVid(src);
-      function loadVid(src) {
+      // vid.onload = loadVid(src);
+      // function loadVid(src) {
         //container.removeChild(loader);
-        // this.url = url;
         vidSource.setAttribute("src", `${src}`);
         vid.appendChild(vidSource);
         vid.setAttribute("alt", `${title}`);
         container.appendChild(vid);
         return container
-      };
+      // };
     }
   }
   //////DEPLACEMENT VIA LE CLAVIER
@@ -92,6 +93,7 @@ export class LightBox {
   close(e) {
     e.preventDefault();
     this.element.classList.add("fade");
+    enableBodyScroll(this.element);
     window.setTimeout(() => {
       this.element.parentElement.removeChild(this.element);
     }, 500);
@@ -100,22 +102,22 @@ export class LightBox {
   // TODO !!
   next(e) {
     e.preventDefault();
-    let i = this.gallery.findIndex((image) => image === this.url);
+    let i = this.gallery.findIndex((url) => url === this.url);
     this.loadMedia(this.gallery[i + 1], this.gallery[i + 1].mediaTitle, this.gallery[i + 1].mediaSrc);
   }
   
   prev(e) {
     e.preventDefault();
-    let i = this.gallery.findIndex((image) => image === this.url);
-    if (i === 0) {
+    let i = this.gallery.findIndex((url) => url === this.url);
+    if (this.gallery.length === 1) {
       i = this.gallery.length;
     }
     this.loadMedia(this.gallery[i - 1], this.gallery[i - 1].mediaTitle, this.gallery[i - 1].mediaSrc);
   }
   
   ////CREATION DE LA LIGHTBOX EN FONCTION DU MEDIA SELECTIONNE
-  buildDOM(url, mediaTitle, mediaSrc) {
-    
+  buildDOM(url, mediaTitle) {
+    const path = url;
     const container = document.createElement("div");
     container.classList.add("lightBox");
     
@@ -131,20 +133,20 @@ export class LightBox {
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("lightBoxImage");
     
-    let mediaBalise = null;
+    // let mediaBalise = null;
     
-    if (url.includes(".mp4")) {
-        mediaBalise = document.createElement("video");
-        mediaBalise.controls = true;
-        const mediaSource = document.createElement("source");
-        mediaSource.setAttribute("src", `${mediaSrc}`);
-        mediaBalise.setAttribute("alt", `${mediaTitle}`);
-        mediaBalise.appendChild(mediaSource);
-      } else {
-          mediaBalise = document.createElement("img");
-          mediaBalise.setAttribute("src", `${mediaSrc}`);
-          mediaBalise.setAttribute("alt", `${mediaTitle}`);
-        }
+    // if (url.includes(".mp4")) {
+    //     mediaBalise = document.createElement("video");
+    //     mediaBalise.controls = true;
+    //     const mediaSource = document.createElement("source");
+    //     mediaSource.setAttribute("src", `${mediaSrc}`);
+    //     mediaBalise.setAttribute("alt", `${mediaTitle}`);
+    //     mediaBalise.appendChild(mediaSource);
+    //   } else if (url.includes(".jpg")) {
+    //       mediaBalise = document.createElement("img");
+    //       mediaBalise.setAttribute("src", `${mediaSrc}`);
+    //       mediaBalise.setAttribute("alt", `${mediaTitle}`);
+    //     }
         
         const title = document.createElement("h2");
         title.classList.add("lightBoxMediaTitle");
@@ -153,7 +155,7 @@ export class LightBox {
         container.appendChild(btnClose);
         container.appendChild(btnNext);
         container.appendChild(btnPrev);
-        imageContainer.appendChild(mediaBalise);
+        // imageContainer.appendChild(mediaBalise);
         container.appendChild(imageContainer);
         container.appendChild(title);
         
