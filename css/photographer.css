@@ -335,6 +335,7 @@ form #messageArea {
   overflow : auto;
   animation : lightBoxIn .5s;
   transition: opacity .3s;
+  display : block;
 }
 
 .lightBox .fade {

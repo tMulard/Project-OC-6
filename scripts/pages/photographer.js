@@ -1,7 +1,7 @@
 import { displayHeader, displayMedias, displayStats, handleLikes } from "../factories/medias.js";
 import { closeModal, displayModal } from "../utils/contactForm.js";
 import { folderName, getData, getIdFromUrl } from "../utils/data.js";
-import { LightBox } from "../factories/lightbox.js";
+import { lightBoxFactory} from "../factories/lightbox.js";
 
 
 const handleFilter = (medias) => {
@@ -82,7 +82,62 @@ const init = async () => {
   displayStats(photographer, medias);
   handleFilter(medias);
   handleLikes()
-  LightBox.init(medias)
+
+  const links = Array.from(
+    document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'));
+  const gallery = links.map((link) => link.getAttribute("href"));  
+  links.forEach((link) =>
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const url = e.currentTarget.getAttribute("href");
+      let mediaTitle;
+      let mediaSrc;
+      medias.forEach((media) => {
+        if (url === `${media.path}${media.image}`) {
+          mediaTitle = media.title;
+          mediaSrc = `${media.path}${media.image}`;
+        }
+        else if (url === `${media.path}${media.video}`) {
+          mediaTitle = media.title;
+          mediaSrc = `${media.path}${media.video}`;
+        }
+      })
+      lightBoxFactory(url, mediaTitle, mediaSrc);
+      const lightBox = document.querySelector(".lightBox")
+      const closeBtn = lightBox.querySelector(".lightBoxClose")
+      closeBtn.addEventListener("click", closeLightBox(lightBox));
+      const nextBtn = lightBox.querySelector(".lightBoxNext")
+      nextBtn.addEventListener("click", next(url));
+      const prevBtn = lightBox.querySelector(".lightBoxPrev")
+      prevBtn.addEventListener("click", prev(url));
+    })
+  );
+
+     ///////FERMER LA LIGHTBOX
+const closeLightBox = (lightBox) => {
+  e.preventDefault();
+  lightBox.classList.add("fade");
+  enableBodyScroll();
+  window.setTimeout(() => {
+    document.removeChild(lightBox);
+  }, 500);
+}
+/////NAVIGATION DANS LA GALLERIE
+const next = (url, gallery) => {
+  e.preventDefault();
+  let i = gallery.findIndex((index) => index === url);
+  lightBoxFactory(gallery[i + 1], mediaTitle, mediaSrc);
+}
+
+const prev = (url, gallery) => {
+  e.preventDefault();
+  let i = gallery.findIndex((path) => path === url);
+  if (gallery.length === 1) {
+    i = gallery.length;
+  }
+  lightBoxFactory(gallery[i - 1], mediaTitle, mediaSrc);
+}
+
 }
 
 init();
