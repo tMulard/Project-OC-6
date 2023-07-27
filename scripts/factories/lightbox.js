@@ -178,7 +178,10 @@
 
 // }
 
-export const lightBoxFactory = (url, mediaTitle, mediaSrc) => {
+export const lightBoxFactory = (mediaTitle, mediaSrc) => {
+  const background = document.createElement("div");
+  background.classList.add("lightBoxBackground");
+
   const container = document.createElement("div");
   container.classList.add("lightBox");
   
@@ -191,19 +194,21 @@ export const lightBoxFactory = (url, mediaTitle, mediaSrc) => {
   const btnPrev = document.createElement("button");
   btnPrev.classList.add("lightBoxPrev");
   
+  const mediaContainer = document.createElement("div");
+  mediaContainer.classList.add("lightBoxMedia");
+  
   const imageContainer = document.createElement("div");
   imageContainer.classList.add("lightBoxImage");
-  
   let mediaBalise = null;
     
-  if (url.includes(".mp4")) {
+  if (mediaSrc.includes(".mp4")) {
     mediaBalise = document.createElement("video");
     mediaBalise.controls = true;
     const mediaSource = document.createElement("source");
     mediaSource.setAttribute("src", `${mediaSrc}`);
     mediaBalise.setAttribute("alt", `${mediaTitle}`);
     mediaBalise.appendChild(mediaSource);
-  } else if (url.includes(".jpg")) {
+  } else {
     mediaBalise = document.createElement("img");
     mediaBalise.setAttribute("src", `${mediaSrc}`);
     mediaBalise.setAttribute("alt", `${mediaTitle}`);
@@ -217,9 +222,11 @@ export const lightBoxFactory = (url, mediaTitle, mediaSrc) => {
   container.appendChild(btnNext);
   container.appendChild(btnPrev);
   imageContainer.appendChild(mediaBalise);
-  container.appendChild(imageContainer);
-  container.appendChild(title);
+  mediaContainer.appendChild(imageContainer);
+  mediaContainer.appendChild(title);
+  container.appendChild(mediaContainer)
+  background.appendChild(container);
   
-  return container
+  return background
 }
 

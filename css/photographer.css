@@ -323,22 +323,30 @@ form #messageArea {
   border-radius: 4px;
 }
 /*//////////////////////////////////////////////////////////////////////////*/
-/* TODO !! */
-.lightBox {
-  position : fixed;
+.lightBoxBackground {
+  position: fixed;
+  z-index: 19;
   top : 0;
   left : 0;
-  width : 0%;
-  height : 100%;
-  background-color : rgba(0, 0, 0, .1);
-  z-index : 11;
-  overflow : auto;
-  animation : lightBoxIn .5s;
-  transition: opacity .3s;
-  display : block;
+  width : 100%;
+  height: 100%;
+  background-color: #fff;
 }
-
+  
+.lightBox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  z-index: 21;
+  overflow: auto;
+  animation: lightBoxIn .5s;
+  transition: opacity .3s;
+}
+    
 .lightBox .fade {
+  display: none;
   opacity : 0;
   z-index: 0;
 }
@@ -351,7 +359,7 @@ form #messageArea {
     position : fixed;
     top : 50%;
     margin-top : -24px;
-    z-index : 11;
+    z-index : 21;
     right : 0;
   }
 
@@ -369,7 +377,7 @@ form #messageArea {
     position : fixed;
     top : 20px;
     right : 20px;
-    z-index : 11;
+    z-index : 21;
   }
   .lightBox button {  
     opacity : 0.5;
@@ -383,61 +391,36 @@ form #messageArea {
   opacity : 1;
 }
 
-/* .lightBox .lightBoxLoader {
-  width: 40px;
-  height: 40px;
-  background : url("../assets/icons/my-loader.svg") center center / 100% 100%;
-  position : absolute;
-  top : 20px;
-  left : 20px;
-  bottom : 20px;
-  right : 20px;
-  z-index : 11;
-} */
-
-.lightBox .lightBoxImage {
+.lightBoxMedia {
+  position : fixed;
+  z-index : 20;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display : flex;
-  align-items : center;
-  justify-content : center;  
-  margin-left: 50%;
-  margin-right: 50%;
-  min-height : 100vh;
-  position : relative;
-  z-index : 10;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100vw - 100px);
+}
+
+.lightBoxImage {
   animation : lightBoxIn .5s;
-  overflow: hidden;
-  max-height : 100%;
-  width : auto;
+  background-color: #fff;
 }
 
-.lightBox .lightBoxImage img {
-  position : absolute;
-  top : 20px;
-  left : 20px;
-  bottom : 20px;
-  right : 20px;
-
+.lightBoxImage img,
+.lightBoxImage video {
+  max-height : 800px;
+  max-width : calc(100vw - 100px);
+  border : solid 5px #901C1C;
 }
 
-.lightBox .lightBoxImage video {
-  max-width : 100%;
-  min-height : 100px;
-  width: auto;
-  position : absolute;
-  top : 20px;
-  left : 20px;
-  bottom : 20px;
-  right : 20px;
-}
-
-.lightBox .lightBoxMediaTitle {
+.lightBoxMediaTitle {
   color: #901C1C;
   font-size: 18px;
-  width : 85%;
-  position : absolute;
-  left : 45%;
-  bottom : 20%;
-  z-index : 11;
+  text-align: left;
+  width : 100%;
+  margin-top : 10px;
 } 
 
 @keyframes lightBoxIn {

@@ -3,7 +3,6 @@ import { closeModal, displayModal } from "../utils/contactForm.js";
 import { folderName, getData, getIdFromUrl } from "../utils/data.js";
 import { lightBoxFactory} from "../factories/lightbox.js";
 
-
 const handleFilter = (medias) => {
   const filterResult = document.querySelector(".filterResult p");
   const filters = document.querySelector(".filters");
@@ -102,40 +101,129 @@ const init = async () => {
           mediaSrc = `${media.path}${media.video}`;
         }
       })
-      lightBoxFactory(url, mediaTitle, mediaSrc);
-      const lightBox = document.querySelector(".lightBox")
+      const lightBox = lightBoxFactory(mediaTitle, mediaSrc);
+      // const lightBox = document.querySelector(".lightBox")
       const closeBtn = lightBox.querySelector(".lightBoxClose")
-      closeBtn.addEventListener("click", closeLightBox(lightBox));
+      closeBtn.addEventListener("click", (event) => closeLightBox(event, lightBox));
       const nextBtn = lightBox.querySelector(".lightBoxNext")
-      nextBtn.addEventListener("click", next(url));
+      nextBtn.addEventListener("click", (event) => next(event, mediaTitle));
       const prevBtn = lightBox.querySelector(".lightBoxPrev")
-      prevBtn.addEventListener("click", prev(url));
+      prevBtn.addEventListener("click", (event) => prev(event, mediaTitle));
+      const myLightBox = document.querySelector("#myLightBox");
+      myLightBox.appendChild(lightBox);
     })
   );
-
+const searchTitleImage = (medias, src) => {
+  let result = src;
+  medias.forEach((media) => {
+    if (`${media.path}${media.image}` === src) result = media.title;
+    });
+  return result
+}
+const searchTitleVideo = (medias, src) => {
+  let result = src;
+  medias.forEach((media) => {
+    if (`${media.path}${media.video}` === src) result = media.title;
+    });
+  return result
+}
      ///////FERMER LA LIGHTBOX
-const closeLightBox = (lightBox) => {
-  e.preventDefault();
+const closeLightBox = (event, lightBox) => {
+  event.preventDefault();
   lightBox.classList.add("fade");
-  enableBodyScroll();
   window.setTimeout(() => {
-    document.removeChild(lightBox);
+    const myLightBox = document.querySelector("#myLightBox");
+    myLightBox.removeChild(lightBox);
   }, 500);
 }
 /////NAVIGATION DANS LA GALLERIE
-const next = (url, gallery) => {
-  e.preventDefault();
-  let i = gallery.findIndex((index) => index === url);
-  lightBoxFactory(gallery[i + 1], mediaTitle, mediaSrc);
+const next = (event, mediaTitle) => {
+  event.preventDefault();
+  let currentMedia = document.querySelector('.lightBoxImage > *')
+  const lightBoxImage = document.querySelector(".lightBoxImage");
+  const lightBoxTitle = document.querySelector(".lightBoxMediaTitle")
+  // IMAGE
+  if (currentMedia.src !== "" && currentMedia.src.search("jpg")) {
+    currentMedia = document.querySelector(".lightBoxImage > img");
+    const url = new URL(currentMedia.src);
+    const path = url.pathname.substring(1);
+    let i = gallery.findIndex((index) => index === path);
+    if (i === gallery.length - 1) {
+      i = -1;
+    }
+      lightBoxImage.innerHTML = "";
+      lightBoxTitle.innerText = "";
+      const mediaBalise = document.createElement("img");
+      mediaBalise.setAttribute("src", `${gallery[i + 1]}`);
+      mediaTitle = searchTitleImage(medias, gallery[i+1])
+      mediaBalise.setAttribute("alt", `${searchTitleImage(medias, gallery[i+1])}`);
+      lightBoxImage.appendChild(mediaBalise);
+      lightBoxTitle.innerText = searchTitleImage(medias, gallery[i+1]);
+    } 
+    // VIDEO
+    else if (currentMedia.src === "") {
+    currentMedia = document.querySelector(".lightBoxImage > video > source");
+    console.log(currentMedia.src);
+    const url = new URL(currentMedia.src);
+    const path = url.pathname.substring(1);
+    let i = gallery.findIndex((index) => index === path);
+    if (i === gallery.length - 1) {
+      i = -1;
+    }
+    lightBoxImage.innerHTML = "";
+    lightBoxTitle.innerText = "";
+    const mediaBalise = document.createElement("video");
+    mediaBalise.controls = true;
+    const mediaSource = document.createElement("source");
+    mediaSource.setAttribute("src", `${gallery[i + 1]}`);
+    mediaBalise.appendChild(mediaSource);
+    mediaBalise.setAttribute("alt", `${searchTitleVideo(medias, gallery[i+1])}`);
+    lightBoxImage.appendChild(mediaBalise);
+    lightBoxTitle.innerText = searchTitleVideo(medias, gallery[i+1]);
+  }
 }
 
-const prev = (url, gallery) => {
-  e.preventDefault();
-  let i = gallery.findIndex((path) => path === url);
+const prev = (event, mediaTitle) => {
+  event.preventDefault();
+  let currentMedia = document.querySelector('.lightBoxImage > *')
+  if (currentMedia.src === "") currentMedia = document.querySelector('.lightBoxImage > video > source') 
+  else if (currentMedia.src.search('jpg')) currentMedia = document.querySelector('.lightBoxImage > img')
+  const url = new URL(currentMedia.src)
+  const path = url.pathname.substring(1)
+  let i = gallery.findIndex((index) => index === path);
   if (gallery.length === 1) {
     i = gallery.length;
   }
-  lightBoxFactory(gallery[i - 1], mediaTitle, mediaSrc);
+  else if (gallery.length !== 1 && i === 0) {
+    i = gallery.length;
+  }
+  
+  const lightBoxImage = document.querySelector('.lightBoxImage')
+  const lightBoxTitle = document.querySelector(".lightBoxMediaTitle")
+  // IMAGE
+  if (path.search(".jpg")) {
+    lightBoxImage.innerHTML = ""
+    lightBoxTitle.innerText = "";
+    const mediaBalise = document.createElement("img");
+    mediaBalise.setAttribute("src", `${gallery[i - 1]}`);
+    mediaBalise.setAttribute("alt", `${searchTitleImage(medias, gallery[i-1])}`);
+    lightBoxImage.appendChild(mediaBalise);
+    lightBoxTitle.innerText = searchTitleImage(medias, gallery[i-1]);
+  }
+  // VIDEO
+  else if (path.search(".mp4")) {
+    lightBoxImage.innerHTML = ""
+    lightBoxTitle.innerText = "";
+    const mediaBalise = document.createElement("video");
+    mediaBalise.controls = true;
+    const mediaSource = document.createElement("source");
+    mediaSource.setAttribute("src", `${gallery[i - 1]}`);
+    mediaBalise.appendChild(mediaSource);
+    mediaBalise.setAttribute("alt", `${searchTitleImage(medias, gallery[i-1])}`);
+    lightBoxImage.appendChild(mediaBalise);
+    lightBoxTitle.innerText = searchTitleVideo(medias, gallery[i-1]);
+  }
+
 }
 
 }
