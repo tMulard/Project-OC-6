@@ -19,12 +19,12 @@
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+      <a href="index.html" tabindex="0"><img src="assets/images/logo.png" class="logo" /></a>
     </header>
     <main id="main">
       <div class="photograph-header">
         <div class="photographer_info"></div>
-        <button class="contact_button">Contactez-moi</button>
+        <button class="contact_button modal-btn" tabindex="0">Contactez-moi</button>
         <div class="photographer_picture"></div>
       </div>
     </main>
@@ -40,18 +40,28 @@
             <h2></h2>
           </div>
         </header>
-        <form>
-          <div>
+        <form name="contact" method="get">
+          <div class="formData formData-username">
             <label>Prénom</label>
-            <input />
+            <input class="text-control"
+            type="text"
+            id="first"
+            name="first"
+            minlength="2"/>
           </div>
-          <div>
+          <div class="formData formData-userlastname">
             <label>Nom</label>
-            <input />
+            <input class="text-control"
+            type="text"
+            id="last"
+            name="last"/>
           </div>
-          <div>
+          <div class="formData formData-usermail">
             <label>Email</label>
-            <input />
+            <input class="text-control"
+            type="email"
+            id="email"
+            name="email"/>
           </div>
           <div>
             <label>Votre message</label>

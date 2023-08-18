@@ -53,6 +53,7 @@ export const mediaFactory = (media) => {
   // afin d'afficher la bonne balise
   let mediaBalise;
   const link = document.createElement("a");
+  link.setAttribute("tabindex", "0");
 
   if ("video" in media) {
     mediaBalise = document.createElement("video");

@@ -7,6 +7,7 @@ export const photographerFactory = (data) => {
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
         link.href = `/photographer.html?id=${id}`;
+        link.setAttribute("tabindex", "0");
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         const h2 = document.createElement( 'h2' );
