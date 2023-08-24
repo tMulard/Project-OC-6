@@ -21,7 +21,7 @@ export const mediaPhotographerFactory = (data) => {
   function getUserPictureDOM() {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-
+    img.setAttribute("alt", name);
     return img;
   }
   function getUserNameDOM() {
@@ -54,6 +54,7 @@ export const mediaFactory = (media) => {
   let mediaBalise;
   const link = document.createElement("a");
   link.setAttribute("tabindex", "0");
+  link.setAttribute("aria-label", `${media.title}, closeup view`);
 
   if ("video" in media) {
     mediaBalise = document.createElement("video");
@@ -77,6 +78,7 @@ export const mediaFactory = (media) => {
 
   const likeContainer = document.createElement("div");
   likeContainer.classList.add("likeContainer");
+  likeContainer.setAttribute("aria-label", "likes")
   const p = document.createElement("p");
   p.textContent = media.likes;
   const like = document.createElement("i");
@@ -106,6 +108,7 @@ export const displayHeader = (photographer) => {
   infoHeaderSection.appendChild(userInfoDOM);
   imgHeaderSection.appendChild(userPictureDOM);
   nameModal.appendChild(userNameDOM);
+  nameModal.setAttribute("aria-label", `Contact me ${photographer.name}`)
 };
 
 export const displayMedias = (medias) => {

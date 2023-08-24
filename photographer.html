@@ -19,14 +19,14 @@
   </head>
   <body>
     <header>
-      <a href="index.html" tabindex="0"
+      <a href="index.html" tabindex="0" aria-label="Fisheye Home Page"
         ><img src="assets/images/logo.png" class="logo"
       /></a>
     </header>
     <main id="main">
       <div class="photograph-header">
         <div class="photographer_info"></div>
-        <button class="contact_button" tabindex="0">
+        <button class="contact_button" tabindex="0" aria-label="Contact me">
           Contactez-moi
         </button>
         <div class="photographer_picture"></div>
@@ -40,7 +40,7 @@
             <div class="namePhotographer"></div>
           </div>
           <div class="modalHeaderImage">
-            <img class="close" src="./assets/icons/close.svg" />
+            <img class="close" src="./assets/icons/close.svg" aria-label="Close Contact Form"/>
             <h2></h2>
           </div>
         </header>
@@ -53,15 +53,16 @@
               id="first"
               name="first"
               minlength="2"
+              aria-label="First name"
             />
           </div>
           <div class="formData formData-userlastname">
             <label>Nom</label>
-            <input class="text-control" type="text" id="last" name="last" />
+            <input class="text-control" type="text" id="last" name="last" aria-label="Last name"/>
           </div>
           <div class="formData formData-usermail">
             <label>Email</label>
-            <input class="text-control" type="email" id="email" name="email" />
+            <input class="text-control" type="email" id="email" name="email" aria-label="Email"/>
           </div>
           <div>
             <label>Votre message</label>
@@ -70,14 +71,15 @@
               id="messageArea"
               cols="80"
               rows="10"
+              aria-label="Your message"
             ></textarea>
           </div>
-          <button class="contact_button" id="contact_btn">Envoyer</button>
+          <button class="contact_button" id="contact_btn" aria-label="Send">Envoyer</button>
         </form>
       </div>
     </div>
     <div id="medias">
-      <div class="filterSection">
+      <div class="filterSection" aria-label="Order by">
         <p>Trier par</p>
         <div class="filterContainer">
           <div class="filterResult">
