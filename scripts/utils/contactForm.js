@@ -35,6 +35,7 @@ export const verifyFirstName = () => {
     if (result) {
       // if the result is valid, then add the input value to the corresponding CONTACT variable
       CONTACT.firstname = result.join(" ");
+      return true;
     } else {
       //or else, send error message
       formDataFirst.setAttribute("data-error-visible", true);
@@ -47,6 +48,7 @@ export const verifyFirstName = () => {
       "Veuillez entrer plus de deux caractères pour le champ du nom."
     );
   }
+  return false;
 };
 
 export const verifyLastName = () => {
@@ -62,6 +64,7 @@ export const verifyLastName = () => {
     if (result) {
       // if the result is valid, then add the input value to the corresponding CONTACT variable
       CONTACT.lastname = result.join(" ");
+      return true;
     } else {
       formDataLast.setAttribute("data-error-visible", true);
       formDataLast.setAttribute("data-error", "Uniquement des lettres svp");
@@ -73,6 +76,7 @@ export const verifyLastName = () => {
       "Veuillez entrer plus d'un caractère pour le champ du nom."
     );
   }
+  return false;
 };
 
 export const verifyMail = () => {
@@ -89,6 +93,7 @@ export const verifyMail = () => {
     if (result) {
       // if the result is valid, then add the input value to the corresponding CONTACT variable
       CONTACT.mail = result.join(", ");
+      return true;
     } else {
       formDataMail.setAttribute("data-error-visible", true);
       formDataMail.setAttribute(
@@ -103,6 +108,7 @@ export const verifyMail = () => {
       "Entrez une adresse mail correcte."
     );
   }
+  return false;
 };
 
 //inputs

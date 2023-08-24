@@ -100,6 +100,11 @@ const init = async () => {
   links.forEach((link) =>
     link.addEventListener("click", (e) => {
       e.preventDefault();
+
+      // si on a cliqué sur le coeur, on ne déclenche pas la lightbox
+      if (e.target.className == "likeContainer") return;
+
+      // comportement normal
       const url = e.currentTarget.getAttribute("href");
       let mediaTitle;
       let mediaSrc;
@@ -258,15 +263,17 @@ const init = async () => {
     event.preventDefault();
 
     // run functions to valid inputs
-    verifyFirstName();
-    verifyLastName();
-    verifyMail();
+    const isFirstNameOK = verifyFirstName();
+    const isLastNameOK = verifyLastName();
+    const isMailOK = verifyMail();
 
+    if (isFirstNameOK && isLastNameOK && isMailOK) {
+      const form = document.querySelector('form')
+      form.reset();
+      closeModal();
+    }
     console.log(CONTACT); // show in console to check if the input were correctly captured
 
-    send_button.addEventListener("click", () => {
-      form.reset();
-    });
   });
 };
 

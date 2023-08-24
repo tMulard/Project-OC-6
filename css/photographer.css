@@ -55,6 +55,11 @@ body {
   cursor: pointer;
 }
 
+.contact_button:hover {
+  background-color:#db8876;
+  color : black;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -127,7 +132,7 @@ body {
 
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 16px;
   color: #e54858;
   display: block;
   margin-top: 7px;
@@ -261,7 +266,8 @@ form #messageArea {
   width: 30%;
   min-width: 350px;
   transition: 0.3s;
-
+  text-decoration: none;
+  position : relative;
 }
 .media_section a:hover {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -298,6 +304,10 @@ form #messageArea {
     color: #901C1C;
     font-size: 18px;
     text-align: right;
+    position : absolute;
+    right :0;
+    z-index : 20;
+    pointer-events: none;
 }
 
 .media_section a img {
