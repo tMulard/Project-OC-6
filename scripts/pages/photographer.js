@@ -268,12 +268,11 @@ const init = async () => {
     const isMailOK = verifyMail();
 
     if (isFirstNameOK && isLastNameOK && isMailOK) {
-      const form = document.querySelector('form')
+      const form = document.querySelector("form");
       form.reset();
       closeModal();
     }
     console.log(CONTACT); // show in console to check if the input were correctly captured
-
   });
 };
 

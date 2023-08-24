@@ -1,8 +1,8 @@
 @import url("index.css");
 
 body {
-  position : relative;
-  z-index : 0;
+  position: relative;
+  z-index: 0;
 }
 
 #contact_modal {
@@ -14,7 +14,7 @@ body {
   background-color: #fafafa;
   height: 300px;
   margin: 0 auto;
-  width : 85%;
+  width: 85%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -56,15 +56,15 @@ body {
 }
 
 .contact_button:hover {
-  background-color:#db8876;
-  color : black;
+  background-color: #db8876;
+  color: black;
 }
 
 .modal {
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
-  border : solid 1px #901c1c;
+  border: solid 1px #901c1c;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,8 +75,8 @@ body {
   top: 10px;
   left: 25%;
   right: 25%;
-  bottom : 10px;
-  z-index : 20;
+  bottom: 10px;
+  z-index: 20;
   overflow: hidden;
 }
 
@@ -142,9 +142,11 @@ body {
   opacity: 0;
   transition: 0.3s;
 }
+
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
+
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
@@ -201,7 +203,7 @@ form #messageArea {
 #medias {
   width: 85%;
   margin: 0 auto;
-  position : relative;
+  position: relative;
 }
 
 .filterSection {
@@ -267,78 +269,79 @@ form #messageArea {
   min-width: 350px;
   transition: 0.3s;
   text-decoration: none;
-  position : relative;
+  position: relative;
 }
+
 .media_section a:hover {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .media_section a .textContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .media_section a .likeContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width : 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 15%;
 }
 
 .media_section a .textContainer h3 {
-    color: #901C1C;
-    font-size: 18px;
-    width : 85%;
+  color: #901C1C;
+  font-size: 18px;
+  width: 85%;
 }
 
 .media_section a p {
-    color: #901C1C;
-    font-size: 18px;
+  color: #901C1C;
+  font-size: 18px;
 }
 
 .media_section a i {
-    color: #901C1C;
-    font-size: 18px;
-    text-align: right;
-    position : absolute;
-    right :0;
-    z-index : 20;
-    pointer-events: none;
+  color: #901C1C;
+  font-size: 18px;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  z-index: 20;
+  pointer-events: none;
 }
 
 .media_section a img {
-    height: 300px;
-    width: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    margin : 0 auto;
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  margin: 0 auto;
 }
 
 .media_section a video {
-    height: 300px;
-    width: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    margin : 0 auto;
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  margin: 0 auto;
 }
 
 .statistics {
-  position : fixed;
-  right : 0%;
-  bottom : 0%;
-  z-index : 9;
+  position: fixed;
+  right: 0%;
+  bottom: 0%;
+  z-index: 9;
   background-color: #db8876;
   border-radius: 5px;
-  color : black;
+  color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  min-width : 400px;
+  min-width: 400px;
   line-height: 31.5px;
 }
 
@@ -351,31 +354,34 @@ form #messageArea {
 
 .statistics p {
   font-size: 24px;
-  margin : 10px;
+  margin: 10px;
 }
 
-::-webkit-scrollbar {width : 7px;}
+::-webkit-scrollbar {
+  width: 7px;
+}
 
 ::-webkit-scrollbar-track {
   background: #fff;
-  padding : 1px;
+  padding: 1px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #9ca2b0;
   border-radius: 4px;
 }
+
 /*//////////////////////////////////////////////////////////////////////////*/
 .lightBoxBackground {
   position: fixed;
   z-index: 19;
-  top : 0;
-  left : 0;
-  width : 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   background-color: #fff;
 }
-  
+
 .lightBox {
   position: fixed;
   top: 0;
@@ -387,86 +393,92 @@ form #messageArea {
   animation: lightBoxIn .5s;
   transition: opacity .3s;
 }
-    
+
 .lightBox .fade {
   display: none;
-  opacity : 0;
+  opacity: 0;
   z-index: 0;
 }
 
 .lightBox .lightBoxNext,
 .lightBox .lightBoxPrev {
-    background : url("../assets/icons/Vector.svg") center center / 100% 100%;
-    width : 30px;
-    height : 48px;
-    position : fixed;
-    top : 50%;
-    margin-top : -24px;
-    z-index : 21;
-    right : 0;
-  }
+  background: url("../assets/icons/Vector.svg") center center / 100% 100%;
+  width: 30px;
+  height: 48px;
+  position: fixed;
+  top: 50%;
+  margin-top: -24px;
+  z-index: 21;
+  right: 0;
+}
 
-  .lightBox .lightBoxPrev {
-    right : 100%;
-    left : 0;
-    transform : rotate(180deg);
-  }
-  
-  .lightBox .lightBoxClose {
-    width : 42px;
-    height : 42px;  
-    margin-top : -21px;
-    background : url("../assets/icons/close.svg") center center / 100% 100%;
-    position : fixed;
-    top : 20px;
-    right : 20px;
-    z-index : 21;
-  }
-  .lightBox button {  
-    opacity : 0.5;
-    cursor : pointer;
-    transition : opacity .3s;
-    text-indent : -3000px;
-    border : none;
-  }
+.lightBox .lightBoxPrev {
+  right: 100%;
+  left: 0;
+  transform: rotate(180deg);
+}
+
+.lightBox .lightBoxClose {
+  width: 42px;
+  height: 42px;
+  margin-top: -21px;
+  background: url("../assets/icons/close.svg") center center / 100% 100%;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 21;
+}
+
+.lightBox button {
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity .3s;
+  text-indent: -3000px;
+  border: none;
+}
 
 .lightBox button:hover {
-  opacity : 1;
+  opacity: 1;
 }
 
 .lightBoxMedia {
-  position : fixed;
-  z-index : 20;
+  position: fixed;
+  z-index: 20;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  display : flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: calc(100vw - 100px);
 }
 
 .lightBoxImage {
-  animation : lightBoxIn .5s;
+  animation: lightBoxIn .5s;
   background-color: #fff;
 }
 
 .lightBoxImage img,
 .lightBoxImage video {
-  max-height : 800px;
-  max-width : calc(100vw - 100px);
-  border : solid 5px #901C1C;
+  max-height: 800px;
+  max-width: calc(100vw - 100px);
+  border: solid 5px #901C1C;
 }
 
 .lightBoxMediaTitle {
   color: #901C1C;
   font-size: 18px;
   text-align: left;
-  width : 100%;
-  margin-top : 10px;
-} 
+  width: 100%;
+  margin-top: 10px;
+}
 
 @keyframes lightBoxIn {
-  from {opacity : 0;}
-  to {opacity : 1;}
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
