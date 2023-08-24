@@ -115,18 +115,6 @@ body {
   margin-bottom: 70px;
 }
 
-/* 
-.modal-btn {
-  font-size: 145%;
-  background: #fe142f;
-  display: flex;
-  margin: auto;
-  padding: 2em;
-  color: #fff;
-  padding: 0.75rem 2.5rem;
-  border-radius: 1rem;
-  cursor: pointer;
-}
 
 .text-control {
   margin: 0;
@@ -155,7 +143,7 @@ body {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
- */
+
 
 .photographer_picture img {
   height: 200px;

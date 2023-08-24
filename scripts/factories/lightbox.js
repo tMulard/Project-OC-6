@@ -184,21 +184,26 @@ export const lightBoxFactory = (mediaTitle, mediaSrc) => {
 
   const container = document.createElement("div");
   container.classList.add("lightBox");
+  container.setAttribute("aria-label", "Image closeup view")
   
   const btnClose = document.createElement("button");
   btnClose.classList.add("lightBoxClose");
+  btnClose.setAttribute("aria-label", "Close Lightbox")
   
   const btnNext = document.createElement("button");
   btnNext.classList.add("lightBoxNext");
+  btnNext.setAttribute("aria-label", "Next Image")
   
   const btnPrev = document.createElement("button");
   btnPrev.classList.add("lightBoxPrev");
+  btnPrev.setAttribute("aria-label", "Previous Image")
   
   const mediaContainer = document.createElement("div");
   mediaContainer.classList.add("lightBoxMedia");
   
   const imageContainer = document.createElement("div");
   imageContainer.classList.add("lightBoxImage");
+  imageContainer.setAttribute("aria-label", `${mediaTitle}`)
   let mediaBalise = null;
     
   if (mediaSrc.includes(".mp4")) {

@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
-    href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-    rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
     />
     <script
-    src="https://kit.fontawesome.com/a1f8d8f6ea.js"
-    crossorigin="anonymous"
+      src="https://kit.fontawesome.com/a1f8d8f6ea.js"
+      crossorigin="anonymous"
     ></script>
     <script src="scripts/pages/photographer.js" type="module"></script>
     <script src="scripts/factories/lightbox.js" type="class"></script>
@@ -19,12 +19,16 @@
   </head>
   <body>
     <header>
-      <a href="index.html" tabindex="0"><img src="assets/images/logo.png" class="logo" /></a>
+      <a href="index.html" tabindex="0"
+        ><img src="assets/images/logo.png" class="logo"
+      /></a>
     </header>
     <main id="main">
       <div class="photograph-header">
         <div class="photographer_info"></div>
-        <button class="contact_button modal-btn" tabindex="0">Contactez-moi</button>
+        <button class="contact_button" tabindex="0">
+          Contactez-moi
+        </button>
         <div class="photographer_picture"></div>
       </div>
     </main>
@@ -43,25 +47,21 @@
         <form name="contact" method="get">
           <div class="formData formData-username">
             <label>Prénom</label>
-            <input class="text-control"
-            type="text"
-            id="first"
-            name="first"
-            minlength="2"/>
+            <input
+              class="text-control"
+              type="text"
+              id="first"
+              name="first"
+              minlength="2"
+            />
           </div>
           <div class="formData formData-userlastname">
             <label>Nom</label>
-            <input class="text-control"
-            type="text"
-            id="last"
-            name="last"/>
+            <input class="text-control" type="text" id="last" name="last" />
           </div>
           <div class="formData formData-usermail">
             <label>Email</label>
-            <input class="text-control"
-            type="email"
-            id="email"
-            name="email"/>
+            <input class="text-control" type="email" id="email" name="email" />
           </div>
           <div>
             <label>Votre message</label>
@@ -72,7 +72,7 @@
               rows="10"
             ></textarea>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" id="contact_btn">Envoyer</button>
         </form>
       </div>
     </div>
@@ -93,8 +93,7 @@
       </div>
       <div class="media_section"></div>
       <div id="myLightBox" class="lightBox"></div>
-      <div class="statistics"></div>  
+      <div class="statistics"></div>
     </div>
-    
   </body>
 </html>
