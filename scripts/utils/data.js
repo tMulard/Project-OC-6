@@ -1,6 +1,7 @@
+import dataBase from '../../data/photographers.json';
 export const getData = async () => {
   try {
-    const response = await fetch(".././data/photographers.json");
+    const response = await fetch(dataBase);
     const data = await response.json();
     return data;
   } catch (error) {
