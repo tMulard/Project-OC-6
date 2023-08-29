@@ -158,20 +158,22 @@ const init = async () => {
   const next = (event, mediaTitle) => {
     event.preventDefault();
     let currentMedia = document.querySelector(".lightBoxImage > *");
-    if (currentMedia.src === "")
+    if (currentMedia.src === "") {
       currentMedia = document.querySelector(".lightBoxImage > video > source");
-    else if (currentMedia.src.search("jpg"))
+    }
+    else if (currentMedia.src.search("jpg")) {
       currentMedia = document.querySelector(".lightBoxImage > img");
+    }
     const lightBoxImage = document.querySelector(".lightBoxImage");
     const lightBoxTitle = document.querySelector(".lightBoxMediaTitle");
     const url = new URL(currentMedia.src);
-    const path = url.pathname.substring(1);
+    const path = decodeURI(url.pathname.substring(14));
     let i = gallery.findIndex((index) => index === path);
     if (i === gallery.length - 1) {
       i = -1;
     }
     const nextPath = gallery[i + 1];
-
+    
     // IMAGE
     if (nextPath.includes(".jpg")) {
       lightBoxImage.innerHTML = "";
@@ -206,7 +208,7 @@ const init = async () => {
     else if (currentMedia.src.search("jpg"))
       currentMedia = document.querySelector(".lightBoxImage > img");
     const url = new URL(currentMedia.src);
-    const path = url.pathname.substring(1);
+    const path = decodeURI(url.pathname.substring(14));
     let i = gallery.findIndex((index) => index === path);
     if (gallery.length === 1) {
       i = gallery.length;
