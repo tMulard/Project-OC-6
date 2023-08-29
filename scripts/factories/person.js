@@ -6,7 +6,7 @@ export const photographerFactory = (data) => {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
-        link.href = `/photographer.html?id=${id}`;
+        link.href = `./photographer.html?id=${id}`;
         link.setAttribute("tabindex", "0");
         link.setAttribute("aria-label", `${name}`)
         const img = document.createElement( 'img' );
